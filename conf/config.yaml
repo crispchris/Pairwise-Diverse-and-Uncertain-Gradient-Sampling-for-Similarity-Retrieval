@@ -1,0 +1,56 @@
+# conf/config.yaml
+
+# General
+active_strategy: pairdug_fast    # full | random | pairdug_fast | pairdug_gt
+seed: 42
+gradient_metrics: False
+
+# Dataset
+sport: football          # basketball | football
+
+# Dataset paths
+football:
+ train_pairs: "./data/NFL/pairs_nfl_train_10k.pt" # Increase for full evaluation
+ val_pairs: "./data/NFL/pairs_nfl_val_10k.pt" # Increase for full evaluation
+ test_pairs: "./data/NFL/pairs_nfl_test_10k.pt" # Increase for full evaluation
+ train_events: "./data/NFL/nfl_ngs_train.pt"
+ val_events: "./data/NFL/nfl_ngs_val.pt"
+ test_events: "./data/NFL/nfl_ngs_test.pt"
+basketball:
+ train_pairs: "./data/NBA/pairs_train_10M.pt"
+ val_pairs: "./data/NBA/pairs_val_10M.pt"
+ test_pairs: "./data/NBA/pairs_test_10M.pt"
+ train_events: "./data/NBA/nba_sportvu_train.pt"
+ val_events: "./data/NBA/nba_sportvu_val.pt"
+ test_events: "./data/NBA/nba_sportvu_test.pt"
+
+#
+batch_size: 1000   # basketball 10000 | football 1000
+eval_batch_size: 128
+
+# Training
+epochs: 1 # 500 Increase for full evaluation
+lr: 1e-3
+weight_decay: 1e-5
+early_stopping:
+  enabled: true      # set to false to disable completely
+  patience: 10       # how many epochs without improvement to wait
+  monitor: loss      # which val metric to monitor
+  mode: min          # "min" (e.g. loss) or "max" (e.g. recall)
+
+# Model architecture
+model:
+  dropout_rate: 0.3
+  embedding_dim: 64
+
+# Retrieval Metrics settings
+max_queries: 1 #1000 Increase for full evaluation
+max_gallery: 10 #200 Increase for full evaluation
+
+# for coding reasons
+train_pairs: "dummy"
+val_pairs: "dummy"
+test_pairs: "dummy"
+train_events: "dummy"
+val_events: "dummy"
+test_events: "dummy"
