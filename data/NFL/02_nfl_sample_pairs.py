@@ -60,7 +60,7 @@ def sample_pairs(dataset, n_pairs, n_workers=6, seed=42, n_chunks=10):
 
 if __name__=="__main__":
     splits = {
-        "train": (1_000_000,"nfl_ngs_train.pt"),
+        "train": (100_000,"nfl_ngs_train.pt"),
         "val":   (100_000, "nfl_ngs_val.pt"),
         "test":  (100_000, "nfl_ngs_test.pt"),
     }
@@ -68,4 +68,4 @@ if __name__=="__main__":
         if not os.path.exists(fpath): continue
         dataset = torch.load(fpath,map_location="cpu")
         pairs = sample_pairs(dataset,n_pairs,n_workers=6)
-        torch.save(pairs,f"pairs_nfl_{name}_1M.pt")
+        torch.save(pairs,f"pairs_nfl_{name}_100k.pt")
